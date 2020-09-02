@@ -9,14 +9,14 @@ ts, data = util.load_data("short_test.csv", columnName="Price")
 
 freq = 24*60//30*1
 # freq = 8
-decomposition = seasonal_decompose(ts.values, model="additive", freq=freq) # 季节分解
+decomposition = seasonal_decompose(ts.values, model="additive", freq=freq)
 
-# 直接舍弃NA值
+
 trend = pd.DataFrame(decomposition.trend).dropna().values
 seasonal = pd.DataFrame(decomposition.seasonal).dropna().values
 residual = pd.DataFrame(decomposition.resid).dropna().values
 trend = trend.astype('float32')
-seasonal = seasonal[freq//2:-(freq//2)].astype('float32')  # 为了三个数据尺度统一，舍弃seanson的前后2个数值
+seasonal = seasonal[freq//2:-(freq//2)].astype('float32')  
 residual = residual.astype('float32')
 data = data[freq//2:-(freq//2)].astype('float32')
 
@@ -29,7 +29,7 @@ resRange = np.max(residual)-np.min(residual)
 trendRange = np.max(trend)-np.min(trend)
 totalRange = np.max(data)-np.min(data)
 
-# 作图观察
+
 fig = plt.figure()
 ax1 = fig.add_subplot(411)
 ax2 = fig.add_subplot(412)
