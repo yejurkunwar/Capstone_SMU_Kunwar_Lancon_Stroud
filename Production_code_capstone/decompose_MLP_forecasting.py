@@ -13,7 +13,7 @@ def decompose_MLP_forecasting(ts, dataset, freq, lag, epoch=20, hidden_num=64, b
     print("peroid shape:", seasonal.shape)
     print("residual shape:", residual.shape)
 
-    # 分别预测
+ 
     resWin = trendWin = lag
     t1 = time.time()
     trTrain, trTest, mae1, mrse1, smape1 = \
